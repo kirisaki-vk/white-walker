@@ -4,10 +4,12 @@ import vk.kirisaki.localisation.Lieu;
 import vk.kirisaki.Marcheur;
 import vk.kirisaki.localisation.Rue;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class MarcheurTest {
     @Test
@@ -35,7 +37,7 @@ public class MarcheurTest {
 
         var carteAnatananarivo = new Carte(
                 "Antananarivo",
-                Set.of(HEI, ESTI, balancoire, boulevardDeLeurope, pullman, sekolintsika, marais, nexta)
+                new HashSet<>(List.of(HEI, ESTI, balancoire, boulevardDeLeurope, pullman, sekolintsika, marais, nexta))
         );
 
         var bjarni = new Marcheur("Bjarni");
@@ -45,5 +47,7 @@ public class MarcheurTest {
         System.out.println(itineraire);
 
         assertEquals(ESTI, itineraire.getLast());
+        assertEquals(HEI, itineraire.getFirst());
+        assertTrue(itineraire.contains(balancoire));
     }
 }
