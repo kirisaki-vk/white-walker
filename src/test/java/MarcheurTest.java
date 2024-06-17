@@ -5,6 +5,7 @@ import vk.kirisaki.Marcheur;
 import vk.kirisaki.localisation.Rue;
 
 import java.util.List;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -32,7 +33,10 @@ public class MarcheurTest {
         var marais = new Lieu("Marais", List.of(rue6));
         var nexta = new Lieu("Nexta", List.of(rue7));
 
-        var carteAnatananarivo = new Carte("Antananarivo", List.of(HEI, ESTI, balancoire, boulevardDeLeurope, pullman, sekolintsika, marais, nexta));
+        var carteAnatananarivo = new Carte(
+                "Antananarivo",
+                Set.of(HEI, ESTI, balancoire, boulevardDeLeurope, pullman, sekolintsika, marais, nexta)
+        );
 
         var bjarni = new Marcheur("Bjarni");
 

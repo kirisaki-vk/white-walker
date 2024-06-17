@@ -1,6 +1,6 @@
 package vk.kirisaki.localisation;
 
-import java.util.List;
+import java.util.Set;
 
-public record Carte(String lieu, List<Lieu> lieux) {
+public record Carte(String lieu, Set<Lieu> lieux) {
 }
