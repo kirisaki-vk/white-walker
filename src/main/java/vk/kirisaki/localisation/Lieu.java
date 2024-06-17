@@ -7,4 +7,8 @@ public record Lieu(String nom, List<Rue> intersections) {
     public String toString() {
         return nom;
     }
+
+    public boolean estUnCulDeSac() {
+        return intersections.size() == 1;
+    }
 }

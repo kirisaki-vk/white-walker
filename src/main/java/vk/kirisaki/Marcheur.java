@@ -6,6 +6,7 @@ import vk.kirisaki.localisation.Rue;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public final class Marcheur {
     private final String nom;
@@ -15,12 +16,14 @@ public final class Marcheur {
     }
 
     public List<Lieu> marche(Carte endroit, Lieu depart, Lieu desitnation) {
-        List<Lieu> marche = new ArrayList<>();
+        Set<Lieu> destinationsPossibles = endroit.lieux();
+        List<Lieu> listeCulsDeSac = new ArrayList<>();
+        ArrayList<Lieu> marche = new ArrayList<>();
         marche.add(depart);
         Lieu postition = depart;
         while (!postition.equals(desitnation)) {
             Lieu positionTemporaire = postition;
-            List<Lieu> routePossible = endroit.lieux().stream().filter(
+            List<Lieu> routePossible = destinationsPossibles.stream().filter(
                     lieu -> {
                         int indexIntersection = (int) Math.floor(
                                 Math.random() * positionTemporaire.intersections().size()
@@ -29,14 +32,15 @@ public final class Marcheur {
                         return lieu.intersections().contains(rue);
                     }
             ).toList();
+
             int indexNouvellePosition = (int) Math.floor(Math.random() * routePossible.size());
             Lieu nouvellePosition = routePossible.get(indexNouvellePosition);
-            if (nouvellePosition.equals(postition)) continue;
+            if (nouvellePosition.equals(positionTemporaire) || listeCulsDeSac.contains(nouvellePosition)) continue;
             postition = nouvellePosition;
             marche.add(postition);
 
+            if (nouvellePosition.estUnCulDeSac()) listeCulsDeSac.add(nouvellePosition);
         }
-
         return marche;
     }
 }
