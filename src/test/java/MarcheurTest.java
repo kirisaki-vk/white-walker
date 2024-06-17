@@ -1,4 +1,6 @@
 import org.junit.jupiter.api.Test;
+import org.junit.platform.commons.logging.Logger;
+import org.junit.platform.commons.logging.LoggerFactory;
 import vk.kirisaki.localisation.Carte;
 import vk.kirisaki.localisation.Lieu;
 import vk.kirisaki.Marcheur;
@@ -6,12 +8,13 @@ import vk.kirisaki.localisation.Rue;
 
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class MarcheurTest {
+    Logger log = LoggerFactory.getLogger(MarcheurTest.class);
+
     @Test
     public void Bjarni_marche_a_Atananarivo_de_HEI_a_ESTI() {
         // Rues
@@ -28,7 +31,7 @@ public class MarcheurTest {
         // Lieux
         var HEI = new Lieu("HEI", List.of(rueAndriatsihorana, rue1, rue2));
         var ESTI = new Lieu("ESTI", List.of(rue3, rue4));
-        var balancoire = new Lieu("Balancoire", List.of(rueRanaivo, rue1, rue3, rue5));
+        var balancoire = new Lieu("Balançoire", List.of(rueRanaivo, rue1, rue3, rue5));
         var boulevardDeLeurope = new Lieu("Boulevard de l'Europe", List.of(rue4, rue5));
         var pullman = new Lieu("Pullman", List.of(rueAndriatsihorana, rueRanaivo, rue7));
         var sekolintsika = new Lieu("Sekolintsika", List.of(rue2, rue6));
@@ -44,7 +47,7 @@ public class MarcheurTest {
 
         var itineraire = bjarni.marche(carteAnatananarivo, HEI, ESTI);
 
-        System.out.println(itineraire);
+        log.info(itineraire::toString);
 
         assertEquals(ESTI, itineraire.getLast());
         assertEquals(HEI, itineraire.getFirst());
