@@ -9,12 +9,14 @@ import java.util.List;
 
 public final class Marcheur {
     private final String nom;
+    private final Navigateur navigateur;
 
-    public Marcheur(String nom) {
+    public Marcheur(String nom, Navigateur navigateur) {
+        this.navigateur = navigateur;
         this.nom = nom;
     }
 
-    public List<Lieu> marche(Navigateur navigateur, Lieu depart, Lieu desitnation) {
+    public List<Lieu> marche(Lieu depart, Lieu desitnation) {
         List<Lieu> listeCulsDeSac = new ArrayList<>();
         ArrayList<Lieu> marche = new ArrayList<>();
         marche.add(depart);

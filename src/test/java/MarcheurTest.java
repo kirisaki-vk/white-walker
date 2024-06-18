@@ -44,9 +44,9 @@ public class MarcheurTest {
                 new HashSet<>(List.of(HEI, ESTI, balancoire, boulevardDeLeurope, pullman, sekolintsika, marais, nexta))
         );
 
-        var bjarni = new Marcheur("Bjarni");
+        var bjarni = new Marcheur("Bjarni", new Navigateur(carteAnatananarivo));
 
-        var itineraire = bjarni.marche(new Navigateur(carteAnatananarivo), HEI, ESTI);
+        var itineraire = bjarni.marche( HEI, ESTI);
 
         log.info(itineraire::toString);
 
