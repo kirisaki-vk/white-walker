@@ -4,6 +4,7 @@ import org.junit.platform.commons.logging.LoggerFactory;
 import vk.kirisaki.localisation.Carte;
 import vk.kirisaki.localisation.Lieu;
 import vk.kirisaki.Marcheur;
+import vk.kirisaki.localisation.Navigateur;
 import vk.kirisaki.localisation.Rue;
 
 import java.util.HashSet;
@@ -45,7 +46,7 @@ public class MarcheurTest {
 
         var bjarni = new Marcheur("Bjarni");
 
-        var itineraire = bjarni.marche(carteAnatananarivo, HEI, ESTI);
+        var itineraire = bjarni.marche(new Navigateur(carteAnatananarivo), HEI, ESTI);
 
         log.info(itineraire::toString);
 
